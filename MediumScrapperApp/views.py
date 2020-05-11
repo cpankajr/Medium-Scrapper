@@ -31,4 +31,4 @@ class CsrfExemptSessionAuthentication(SessionAuthentication):
 
 
 def HomePage(request):
-    return render("MediumScrapperApp/home.html")
+    return render(request,"MediumScrapperApp/home.html")

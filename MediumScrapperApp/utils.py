@@ -33,10 +33,17 @@ def get_articles_based_on_query(query):
     html = get_html('https://medium.com/tag/'+str(query))
     links = []
     soup = BeautifulSoup(html, 'html.parser')
-    article_links = soup.findAll('div', class_="postArticle-readMore")
+    article_divs = soup.findAll('div', class_="postArticle")
     articles = []
-    for link in article_links:
-        articles.append(get_article_data(link.a.get('href').split('?')[0].split('#')[0]))
+    for article_div in article_divs:
+        article = {}
+        article['title'] = article_div.findAll('div', class_="postArticle-content")[0].findAll('h3')[0].get_text()
+        article['author'] = article_div.findAll('div', class_="postMetaInline-authorLockup")[0].findAll('a')[0].get_text()
+        article['link'] = article_div.findAll('div', class_="postArticle-readMore")[0].a.get('href').split('?')[0].split('#')[0]
+        article['date'] = article_div.findAll('time')[0].get_text()
+        article['datetime'] = article_div.findAll('time')[0].get('datetime')
+        article['reading_time'] = article_div.findAll('span', class_="readingTime")[0].get('title').split()[0]
+        articles.append(article)
     return articles
 
 def get_article_data(url):

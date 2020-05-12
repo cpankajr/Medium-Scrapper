@@ -87,7 +87,8 @@ def get_articles_list_based_on_query(query):
     response_json_data = {}
     no_of_results = 0
     try:
-        time_stamp = int(datetime.datetime.utcnow().timestamp())
+        time_stamp = int(datetime.datetime.now().timestamp()*1000)
+        print("https://medium.com/_/api/tags/"+str(query)+"/stream?limit=100&to="+str(time_stamp)+"&sortBy=published-at")
         html = get_html("https://medium.com/_/api/tags/"+str(query)+"/stream?limit=100&to="+str(time_stamp)+"&sortBy=published-at")
         response_json_data = json.loads(html.decode().replace("])}while(1);</x>",""))
         stream_items = response_json_data["payload"]["streamItems"]
@@ -95,18 +96,19 @@ def get_articles_list_based_on_query(query):
         for stream_item in stream_items[:10]:
             article = {}
             article_unique_id = stream_item["postPreview"]["postId"]
-            author_id = response_json_data["payload"]["references"]["Post"][str(response_id)]["creatorId"]
-            author_name = response_json_data["payload"]["references"]["User"][str(response_user_id)]["name"]
-            article_title = response_json_data["payload"]["references"]["Post"][str(response_id)]["title"]
-            article_date = response_json_data["payload"]["references"]["Post"][str(response_id)]["createdAt"]
-            reading_time = response_json_data["payload"]["references"]["Post"][str(response_id)]["virtuals"]["readingTime"]
-            claps = response_json_data["payload"]["references"]["Post"][str(response_id)]["virtuals"]["totalClapCount"]
+            author_id = response_json_data["payload"]["references"]["Post"][str(article_unique_id)]["creatorId"]
+            author_name = response_json_data["payload"]["references"]["User"][str(author_id)]["name"]
+            article_title = response_json_data["payload"]["references"]["Post"][str(article_unique_id)]["title"]
+            article_date = response_json_data["payload"]["references"]["Post"][str(article_unique_id)]["createdAt"]
+            reading_time = response_json_data["payload"]["references"]["Post"][str(article_unique_id)]["virtuals"]["readingTime"]
+            claps = response_json_data["payload"]["references"]["Post"][str(article_unique_id)]["virtuals"]["totalClapCount"]
             article_link = "https://medium.com/"+str(author_id)+"/"+str(article_unique_id)
 
             article['title'] = article_title
             article['author'] = author_name
             article['link'] = article_link
             article['datetime'] = article_date
+            article['date'] = datetime.datetime.utcfromtimestamp(article_date/1000.0).strftime('%Y-%m-%d %H:%M:%S')
             article['reading_time'] = reading_time
             article ['unique-id'] = article_unique_id
             articles.append(article)
@@ -123,18 +125,19 @@ def get_next_n_articles(start,n,response_json_data):
         for stream_item in stream_items[start:start+n]:
             article = {}
             article_unique_id = stream_item["postPreview"]["postId"]
-            author_id = response_json_data["payload"]["references"]["Post"][str(response_id)]["creatorId"]
-            author_name = response_json_data["payload"]["references"]["User"][str(response_user_id)]["name"]
-            article_title = response_json_data["payload"]["references"]["Post"][str(response_id)]["title"]
-            article_date = response_json_data["payload"]["references"]["Post"][str(response_id)]["createdAt"]
-            reading_time = response_json_data["payload"]["references"]["Post"][str(response_id)]["virtuals"]["readingTime"]
-            claps = response_json_data["payload"]["references"]["Post"][str(response_id)]["virtuals"]["totalClapCount"]
+            author_id = response_json_data["payload"]["references"]["Post"][str(article_unique_id)]["creatorId"]
+            author_name = response_json_data["payload"]["references"]["User"][str(author_id)]["name"]
+            article_title = response_json_data["payload"]["references"]["Post"][str(article_unique_id)]["title"]
+            article_date = response_json_data["payload"]["references"]["Post"][str(article_unique_id)]["createdAt"]
+            reading_time = response_json_data["payload"]["references"]["Post"][str(article_unique_id)]["virtuals"]["readingTime"]
+            claps = response_json_data["payload"]["references"]["Post"][str(article_unique_id)]["virtuals"]["totalClapCount"]
             article_link = "https://medium.com/"+str(author_id)+"/"+str(article_unique_id)
 
             article['title'] = article_title
             article['author'] = author_name
             article['link'] = article_link
             article['datetime'] = article_date
+            article['date'] = datetime.datetime.utcfromtimestamp(article_date/1000.0).strftime('%Y-%m-%d %H:%M:%S')
             article['reading_time'] = reading_time
             article ['unique-id'] = article_unique_id
             articles.append(article)

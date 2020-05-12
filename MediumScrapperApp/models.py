@@ -44,9 +44,7 @@ class MediumArticle(models.Model):
     date = models.DateField()
     
     read_time = models.IntegerField(default=0)
-    
-    details = models.TextField(default="")
-    
+        
     blog = models.TextField(default="")
     
     tags = models.TextField(default="[]")

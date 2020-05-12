@@ -63,5 +63,20 @@ GetArticlesBasedonQuery = GetArticlesBasedonQueryAPI.as_view()
 
 @shared_task
 def save_article_details_in_db(articles_data,search_obj):
+    articles_objs = []
     for article in articles_data:
-        contents,tag = get_article_html(article['link'])
+        try:
+            articles_objs.append(MediumArticle.objects.get(unique_id=article ['unique-id']))
+        except ObjectDoesNotExist:
+            contents,tags = get_article_html(article['link'])
+            articles_objs.append(MediumArticle.objects.get(unique_id=article ['unique-id'],
+                                                    creator=article["author"],
+                                                    title=articles["title"],
+                                                    read_time = article['reading_time'],
+                                                    blog = contents,
+                                                    tags = tags))
+    for articles_obj in articles_objs:
+        search_obj.articles.add(articles_obj)
+        search_obj.save()
+            
+

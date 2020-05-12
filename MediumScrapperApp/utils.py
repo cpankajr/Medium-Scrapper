@@ -3,6 +3,7 @@ import re
 import json
 import logging
 import requests
+import sys
 from bs4 import BeautifulSoup
 
 logger = logging.getLogger(__name__)
@@ -39,30 +40,30 @@ def get_articles_based_on_query(query):
         article = {}
         article['title'] = article_div.findAll('div', class_="postArticle-content")[0].findAll('h3')[0].get_text()
         article['author'] = article_div.findAll('div', class_="postMetaInline-authorLockup")[0].findAll('a')[0].get_text()
-        article['link'] = article_div.findAll('div', class_="postArticle-readMore")[0].a.get('href').split('?')[0].split('#')[0]
+        article_link = article_div.findAll('div', class_="postArticle-readMore")[0].a.get('href').split('?')[0].split('#')[0]
+        article['link'] = article_link
         article['date'] = article_div.findAll('time')[0].get_text()
         article['datetime'] = article_div.findAll('time')[0].get('datetime')
         article['reading_time'] = article_div.findAll('span', class_="readingTime")[0].get('title').split()[0]
+        content , tags = get_article_html(article_link)
+        article ['unique-id'] = article_link.split("-")[-1]
+        article ['tags'] = tags
         articles.append(article)
     return articles
 
-def get_article_data(url):
-    html = get_html(url)
-    soup = BeautifulSoup(html, 'html.parser')
-    content = ''
-    article = {}
-    title = soup.findAll('title')[0]
-    article['title'] = title.get_text()
-    author = soup.findAll('meta', {"name": "author"})[0]
-    article['author'] = author.get('content')
-    article['link'] = url
-    reading_time = int(soup.findAll('meta', {"name":"twitter:data1"})[0].get('value').split()[0])
-    article['reading_time'] = reading_time
-
-    if soup.find('article'):
-        for i in soup.select('article'):
-            content += i.getText()
-        # article["content"] = content
-    else:
-        return {}
-    return article
+def get_article_html(url):
+    try:
+        content = ''
+        tags = []
+        html = get_html(url)
+        soup = BeautifulSoup(html, 'html.parser')
+        if soup.find('article'):
+            for i in soup.select('article'):
+                content += i.get_text()
+        metadata  = json.loads(str(soup.findAll('script',{"type":"application/ld+json"})[0].decode_contents()))
+        tags = [x.replace("Tag:","").lower() for x in metadata["keywords"] if "Tag:" in x]
+    except Exception as e:
+        exc_type, exc_obj, exc_tb = sys.exc_info()
+        logger.info("Error while scrapping url: "+ str(url) +" ---- "+str(e)+" ---- " + str(exc_tb.tb_lineno))
+    return content , tags
+    

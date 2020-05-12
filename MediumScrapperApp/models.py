@@ -23,6 +23,10 @@ class MediumSearchData(models.Model):
 
     search_data = models.TextField(default="[]")
 
+    no_of_results = models.IntegerField(default=0)
+
+    raw_json_data = models.TextField(default="{}")        
+
     created_date = models.DateTimeField(auto_now_add=True)
 
     class Meta:

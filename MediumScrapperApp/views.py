@@ -43,10 +43,13 @@ class GetArticlesBasedonQueryAPI(APIView):
             user_query = data['user_query']
             articles_data=[]
             try:
-                articles_data = json.loads(MediumSearchData.objects.get(user_query=user_query.lower()).search_data)
+                articles_data = json.loads(MediumSearchData.objects.get(user_query=user_query.lower()).search_data)[:10]
             except ObjectDoesNotExist:
-                articles_data = get_articles_list_based_on_query(user_query.lower())
-                search_obj = MediumSearchData.objects.create(user_query=user_query.lower(),search_data=json.dumps(articles_data))
+                articles_data, response_json_data, no_of_results = get_articles_list_based_on_query(user_query.lower())
+                search_obj = MediumSearchData.objects.create(user_query=user_query.lower(),
+                                                            search_data=json.dumps(articles_data),
+                                                            no_of_results=int(no_of_results),
+                                                            raw_json_data=json.dumps(response_json_data),)
                 search_obj_pk = search_obj.pk
                 save_article_details_in_db.delay(articles_data,search_obj_pk)
 
@@ -84,3 +87,38 @@ def save_article_details_in_db(articles_data,search_obj_pk):
         search_obj.save()
             
 
+class GetNextArticlesAPI(APIView):
+
+    authentication_classes = (
+        CsrfExemptSessionAuthentication, BasicAuthentication)
+
+    def post(self, request, *args, **kwargs):
+
+        response = {}
+        response['status'] = 500
+        try:
+            data = request.data
+            user_query = data['user_query']
+            start = int(data['start'])
+            limit = int(data['limit'])
+            articles_data=[]    
+            search_obj = MediumSearchData.objects.get(user_query=user_query.lower())
+            no_of_results = search_obj.no_of_results
+            if no_of_results>= (start+limit):
+                articles_data = get_next_n_articles(start,limit,response_json_data)
+                search_obj.search_data = json.dumps(json.loads(search_obj.search_data)+articles_data)
+                search_obj.save()
+                search_obj_pk = search_obj.pk
+                save_article_details_in_db.delay(articles_data,search_obj_pk)
+                response['status'] = 200
+                response['articles_data'] = articles_data
+            else:
+                response['status'] = 301
+        except Exception as e:
+            exc_type, exc_obj, exc_tb = sys.exc_info()
+            logger.error("GetNextArticlesAPI: %s at %s",
+                         str(e), str(exc_tb.tb_lineno))
+
+        return Response(data=response)
+
+GetNextArticles = GetNextArticlesAPI.as_view()

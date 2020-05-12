@@ -85,11 +85,13 @@ def get_article_page_data(url):
 def get_articles_list_based_on_query(query):
     articles = []
     response_json_data = {}
+    no_of_results = 0
     try:
         time_stamp = int(datetime.datetime.utcnow().timestamp())
         html = get_html("https://medium.com/_/api/tags/"+str(query)+"/stream?limit=100&to="+str(time_stamp)+"&sortBy=published-at")
         response_json_data = json.loads(html.decode().replace("])}while(1);</x>",""))
-        stream_items = response_json_data["payload"]["streamItems"] 
+        stream_items = response_json_data["payload"]["streamItems"]
+        no_of_results = len(stream_items)
         for stream_item in stream_items[:10]:
             article = {}
             article_unique_id = stream_item["postPreview"]["postId"]
@@ -111,7 +113,7 @@ def get_articles_list_based_on_query(query):
     except Exception as e:
         exc_type, exc_obj, exc_tb = sys.exc_info()
         logger.info("Error get_articles_list_based_on_query: "+str(e)+" at line no: " + str(exc_tb.tb_lineno))
-    return articles,response_json_data
+    return articles,response_json_data,no_of_results
 
 def get_next_n_articles(start,n,response_json_data):
     articles = []

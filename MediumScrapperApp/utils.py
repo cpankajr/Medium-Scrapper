@@ -5,7 +5,7 @@ import logging
 import requests
 import sys
 from bs4 import BeautifulSoup
-
+import datetime
 logger = logging.getLogger(__name__)
 
 def remove_html_from_string(raw_str):
@@ -31,8 +31,7 @@ def get_tag_suggestion(query):
             print(tag_div.getText())
 
 def get_articles_based_on_query(query):
-    html = get_html('https://medium.com/tag/'+str(query))
-    links = []
+    html = get_html('https://medium.com/tag/'+str(query)+"/latest")
     soup = BeautifulSoup(html, 'html.parser')
     article_divs = soup.findAll('div', class_="postArticle")
     articles = []
@@ -45,11 +44,11 @@ def get_articles_based_on_query(query):
         article['date'] = article_div.findAll('time')[0].get_text()
         article['datetime'] = article_div.findAll('time')[0].get('datetime')
         article['reading_time'] = article_div.findAll('span', class_="readingTime")[0].get('title').split()[0]
-        # content , tags = get_article_html(article_link)
         article ['unique-id'] = article_link.split("-")[-1]
-        # article ['tags'] = tags
         articles.append(article)
     return articles
+
+
 
 def get_article_page_data(url):
     try:
@@ -66,17 +65,79 @@ def get_article_page_data(url):
 
         article_unique_id = url.split("-")[-1]
         
-        html = get_html("https://medium.com/p/"+article_unique_id+"/responses/show")
-        soup = BeautifulSoup(html, 'html.parser')
-        responses = soup.findAll('div', class_='streamItem')
-        for response in responses:
+        html = get_html("https://medium.com/_/api/posts/"+article_unique_id+"/responsesStream")
+        response_json_data = json.loads(html.decode().replace("])}while(1);</x>",""))
+        stream_items = response_json_data["payload"]["streamItems"]
+        for stream_item in stream_items:
+            response_id = stream_item["postPreview"]["postId"]
+            response_user_id = response_json_data["payload"]["references"]["Post"][str(response_id)]["creatorId"]
+            html = get_html("https://medium.com/"+str(response_user_id)+"/"+str(response_id))
+            soup = BeautifulSoup(html, 'html.parser')
             comment = {}
-            comment ["user"] = response.findAll('div', class_="postMetaInline-authorLockup")[0].findAll('a')[0].get_text()
-            comment ["text"] = response.find('div', class_='postArticle-content').get_text()
+            comment ["text"] = soup.find('article').findAll("section")[2].get_text()
+            comment ["user"] = soup.find('article').findAll("section")[1].findAll('a')[1].get_text()
             comments.append(comment)
-            
     except Exception as e:
         exc_type, exc_obj, exc_tb = sys.exc_info()
-        logger.info("Error while scrapping url: "+ str(url) +" ---- "+str(e)+" ---- " + str(exc_tb.tb_lineno))
+        logger.info("Error get_article_page_data url: "+ str(url) +" ERROR: "+str(e)+" at line no: " + str(exc_tb.tb_lineno))
     return content , tags,comments
-    
+
+def get_articles_list_based_on_query(query):
+    articles = []
+    response_json_data = {}
+    try:
+        time_stamp = int(datetime.datetime.utcnow().timestamp())
+        html = get_html("https://medium.com/_/api/tags/"+str(query)+"/stream?limit=100&to="+str(time_stamp)+"&sortBy=published-at")
+        response_json_data = json.loads(html.decode().replace("])}while(1);</x>",""))
+        stream_items = response_json_data["payload"]["streamItems"] 
+        for stream_item in stream_items[:10]:
+            article = {}
+            article_unique_id = stream_item["postPreview"]["postId"]
+            author_id = response_json_data["payload"]["references"]["Post"][str(response_id)]["creatorId"]
+            author_name = response_json_data["payload"]["references"]["User"][str(response_user_id)]["name"]
+            article_title = response_json_data["payload"]["references"]["Post"][str(response_id)]["title"]
+            article_date = response_json_data["payload"]["references"]["Post"][str(response_id)]["createdAt"]
+            reading_time = response_json_data["payload"]["references"]["Post"][str(response_id)]["virtuals"]["readingTime"]
+            claps = response_json_data["payload"]["references"]["Post"][str(response_id)]["virtuals"]["totalClapCount"]
+            article_link = "https://medium.com/"+str(author_id)+"/"+str(article_unique_id)
+
+            article['title'] = article_title
+            article['author'] = author_name
+            article['link'] = article_link
+            article['datetime'] = article_date
+            article['reading_time'] = reading_time
+            article ['unique-id'] = article_unique_id
+            articles.append(article)
+    except Exception as e:
+        exc_type, exc_obj, exc_tb = sys.exc_info()
+        logger.info("Error get_articles_list_based_on_query: "+str(e)+" at line no: " + str(exc_tb.tb_lineno))
+    return articles,response_json_data
+
+def get_next_n_articles(start,n,response_json_data):
+    articles = []
+    try:
+        response_json_data = json.loads(html.decode().replace("])}while(1);</x>",""))
+        stream_items = response_json_data["payload"]["streamItems"] 
+        for stream_item in stream_items[start:start+n]:
+            article = {}
+            article_unique_id = stream_item["postPreview"]["postId"]
+            author_id = response_json_data["payload"]["references"]["Post"][str(response_id)]["creatorId"]
+            author_name = response_json_data["payload"]["references"]["User"][str(response_user_id)]["name"]
+            article_title = response_json_data["payload"]["references"]["Post"][str(response_id)]["title"]
+            article_date = response_json_data["payload"]["references"]["Post"][str(response_id)]["createdAt"]
+            reading_time = response_json_data["payload"]["references"]["Post"][str(response_id)]["virtuals"]["readingTime"]
+            claps = response_json_data["payload"]["references"]["Post"][str(response_id)]["virtuals"]["totalClapCount"]
+            article_link = "https://medium.com/"+str(author_id)+"/"+str(article_unique_id)
+
+            article['title'] = article_title
+            article['author'] = author_name
+            article['link'] = article_link
+            article['datetime'] = article_date
+            article['reading_time'] = reading_time
+            article ['unique-id'] = article_unique_id
+            articles.append(article)
+    except Exception as e:
+        exc_type, exc_obj, exc_tb = sys.exc_info()
+        logger.info("Error get_next_n_articles: "+str(e)+" at line no: " + str(exc_tb.tb_lineno))
+
+    return articles

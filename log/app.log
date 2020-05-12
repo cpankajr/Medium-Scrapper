@@ -1,2 +1,2 @@
-[12-May-2020 18:19:14] ERROR [MediumScrapperApp.views:55] GetArticlesBasedonQuery: get_articles_based_on_query() got an unexpected keyword argument 'user_query' at 48
-[12-May-2020 18:21:06] ERROR [MediumScrapperApp.views:55] GetArticlesBasedonQuery: Object of type MediumSearchData is not JSON serializable at 50
+[12-May-2020 22:30:02] INFO [MediumScrapperApp.utils:84] Error while scrapping url: https://medium.com/swlh/what-programming-language-has-the-happiest-developers-f0636b08e898 ---- name 'postId' is not defined ---- 75
+[12-May-2020 22:30:47] INFO [MediumScrapperApp.utils:84] Error while scrapping url: https://medium.com/swlh/what-programming-language-has-the-happiest-developers-f0636b08e898 ---- '6b20616a713e' ---- 75

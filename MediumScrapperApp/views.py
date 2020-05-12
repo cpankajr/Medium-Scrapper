@@ -43,11 +43,12 @@ class GetArticlesBasedonQueryAPI(APIView):
             user_query = data['user_query']
             articles_data=[]
             try:
-                article_data = json.loads(MediumSearchData.objects.get(user_query=user_query.lower()).search_data)
+                articles_data = json.loads(MediumSearchData.objects.get(user_query=user_query.lower()).search_data)
             except ObjectDoesNotExist:
-                articles_data = get_articles_based_on_query(user_query.lower())
+                articles_data = get_articles_list_based_on_query(user_query.lower())
                 search_obj = MediumSearchData.objects.create(user_query=user_query.lower(),search_data=json.dumps(articles_data))
-                save_article_details_in_db.delay(articles_data,search_obj.pk)
+                search_obj_pk = search_obj.pk
+                save_article_details_in_db.delay(articles_data,search_obj_pk)
 
             response['status'] = 200
             response['articles_data'] = articles_data

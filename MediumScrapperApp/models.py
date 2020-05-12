@@ -49,6 +49,8 @@ class MediumArticle(models.Model):
     
     tags = models.TextField(default="[]")
 
+    comments = models.TextField(default="[]")
+
     class Meta:
         verbose_name = "MediumArticle"
         verbose_name_plural = "MediumArticles"

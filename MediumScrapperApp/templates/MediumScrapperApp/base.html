@@ -1,0 +1,23 @@
+{% load static %}
+<html>
+  <head>
+    <title>Medium Scrapper</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+    <link href="{% static 'MediumScrapperApp/css/external-css/bootstrap.min.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <script src="{% static 'MediumScrapperApp/js/jquery/jquery-3.5.1.min.js' %}"></script>
+    <script src="{% static 'MediumScrapperApp/js/external-js/popper.min.js' %}"></script>
+    <script src="{% static 'MediumScrapperApp/js/external-js/bootstrap.min.js' %}"></script>
+  </head>
+  <body>  
+      <nav class="navbar navbar-light bg-light">
+        <a class="navbar-brand" href="#">
+          <img src="{% static 'MediumScrapperApp/img/logo.png' %}" width="30" height="30" class="d-inline-block align-top" alt="">
+          Medium Scrapper
+        </a>
+      </nav>
+        
+      {% block content %}
+      {% endblock %}
+
+  </body>
+</html>

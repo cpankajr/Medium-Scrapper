@@ -68,13 +68,16 @@ def save_article_details_in_db(articles_data,search_obj_pk):
         try:
             articles_objs.append(MediumArticle.objects.get(unique_id=article ['unique-id']))
         except ObjectDoesNotExist:
-            contents,tags = get_article_html(article['link'])
+            contents, tags, comments = get_article_page_data(article['link'])
             articles_objs.append(MediumArticle.objects.create(unique_id=article ['unique-id'],
                                                     creator=article["author"],
                                                     title=article["title"],
                                                     read_time = article['reading_time'],
                                                     blog = contents,
-                                                    tags = tags))
+                                                    tags = json.dumps(tags),
+                                                    comments = json.dumps(comments)
+                                                    )
+                                                )
     for articles_obj in articles_objs:
         search_obj.articles.add(articles_obj)
         search_obj.save()

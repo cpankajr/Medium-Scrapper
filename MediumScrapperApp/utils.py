@@ -51,10 +51,11 @@ def get_articles_based_on_query(query):
         articles.append(article)
     return articles
 
-def get_article_html(url):
+def get_article_page_data(url):
     try:
         content = ''
         tags = []
+        comments = []
         html = get_html(url)
         soup = BeautifulSoup(html, 'html.parser')
         if soup.find('article'):
@@ -62,8 +63,20 @@ def get_article_html(url):
                 content += i.get_text()
         metadata  = json.loads(str(soup.findAll('script',{"type":"application/ld+json"})[0].decode_contents()))
         tags = [x.replace("Tag:","").lower() for x in metadata["keywords"] if "Tag:" in x]
+
+        article_unique_id = url.split("-")[-1]
+        
+        html = get_html("https://medium.com/p/"+article_unique_id+"/responses/show")
+        soup = BeautifulSoup(html, 'html.parser')
+        responses = soup.findAll('div', class_='streamItem')
+        for response in responses:
+            comment = {}
+            comment ["user"] = response.findAll('div', class_="postMetaInline-authorLockup")[0].findAll('a')[0].get_text()
+            comment ["text"] = response.find('div', class_='postArticle-content').get_text()
+            comments.append(comment)
+            
     except Exception as e:
         exc_type, exc_obj, exc_tb = sys.exc_info()
         logger.info("Error while scrapping url: "+ str(url) +" ---- "+str(e)+" ---- " + str(exc_tb.tb_lineno))
-    return content , tags
+    return content , tags,comments
     

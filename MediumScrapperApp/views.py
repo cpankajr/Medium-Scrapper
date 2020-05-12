@@ -105,6 +105,7 @@ class GetNextArticlesAPI(APIView):
             search_obj = MediumSearchData.objects.get(user_query=user_query.lower())
             no_of_results = search_obj.no_of_results
             if no_of_results>= (start+limit):
+                response_json_data = json.loads(search_obj.raw_json_data)
                 articles_data = get_next_n_articles(start,limit,response_json_data)
                 search_obj.search_data = json.dumps(json.loads(search_obj.search_data)+articles_data)
                 search_obj.save()

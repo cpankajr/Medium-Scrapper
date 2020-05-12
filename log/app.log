@@ -1,28 +1,12 @@
-[12-May-2020 23:52:13] INFO [MediumScrapperApp.utils:84] Error while scrapping url: https://medium.com/8087c40cb898/5e8c76e2c868 ---- Expecting value: line 1 column 1 (char 0) ---- 71
-[12-May-2020 23:52:16] INFO [MediumScrapperApp.utils:84] Error while scrapping url: https://medium.com/3745946f513f/e0ec305f3777 ---- Expecting value: line 1 column 1 (char 0) ---- 71
-[12-May-2020 23:52:19] INFO [MediumScrapperApp.utils:84] Error while scrapping url: https://medium.com/6b7566bd0ad2/816e4ffe5193 ---- Expecting value: line 1 column 1 (char 0) ---- 71
-[12-May-2020 23:52:26] INFO [MediumScrapperApp.utils:84] Error while scrapping url: https://medium.com/54bfda524022/4d4dd499f5b5 ---- Expecting value: line 1 column 1 (char 0) ---- 71
-[12-May-2020 23:52:29] INFO [MediumScrapperApp.utils:84] Error while scrapping url: https://medium.com/ede21dbddadc/b730656cb1eb ---- Expecting value: line 1 column 1 (char 0) ---- 71
-[12-May-2020 23:52:31] INFO [MediumScrapperApp.utils:84] Error while scrapping url: https://medium.com/19496bcea1ea/949c9a839d88 ---- Expecting value: line 1 column 1 (char 0) ---- 71
-[12-May-2020 23:52:33] INFO [MediumScrapperApp.utils:84] Error while scrapping url: https://medium.com/8e1e39b17121/47da89444b4e ---- Expecting value: line 1 column 1 (char 0) ---- 71
-[13-May-2020 00:05:36] INFO [MediumScrapperApp.utils:84] Error while scrapping url: https://medium.com/f9ed76fbd13a/1ecf553c2a8c ---- Expecting value: line 1 column 1 (char 0) ---- 71
-[13-May-2020 00:05:38] INFO [MediumScrapperApp.utils:84] Error while scrapping url: https://medium.com/24059d51d5cb/fe01b29fecb5 ---- Expecting value: line 1 column 1 (char 0) ---- 71
-[13-May-2020 00:05:40] INFO [MediumScrapperApp.utils:84] Error while scrapping url: https://medium.com/19c90c54b753/53ab1807ad68 ---- Expecting value: line 1 column 1 (char 0) ---- 71
-[13-May-2020 00:05:42] INFO [MediumScrapperApp.utils:84] Error while scrapping url: https://medium.com/c11030d62971/9d1c8eeaadf2 ---- Expecting value: line 1 column 1 (char 0) ---- 71
-[13-May-2020 00:05:44] INFO [MediumScrapperApp.utils:84] Error while scrapping url: https://medium.com/8ba01aa3387d/ea98743ad23a ---- Expecting value: line 1 column 1 (char 0) ---- 71
-[13-May-2020 00:05:48] INFO [MediumScrapperApp.utils:84] Error while scrapping url: https://medium.com/afb9379299d4/b0dfb1ad0dc4 ---- Expecting value: line 1 column 1 (char 0) ---- 71
-[13-May-2020 00:05:51] INFO [MediumScrapperApp.utils:84] Error while scrapping url: https://medium.com/feecc0d308e6/2cbc8794ac8a ---- Expecting value: line 1 column 1 (char 0) ---- 71
-[13-May-2020 00:05:55] INFO [MediumScrapperApp.utils:84] Error while scrapping url: https://medium.com/3c802c9e1324/1fac4f0252de ---- Expecting value: line 1 column 1 (char 0) ---- 71
-[13-May-2020 00:06:00] INFO [MediumScrapperApp.utils:84] Error while scrapping url: https://medium.com/e84f2fd536c9/93b31aab9e60 ---- Expecting value: line 1 column 1 (char 0) ---- 71
-[13-May-2020 00:06:04] INFO [MediumScrapperApp.utils:84] Error while scrapping url: https://medium.com/2823a9b843e2/7d642cf800b ---- Expecting value: line 1 column 1 (char 0) ---- 71
-[13-May-2020 00:11:33] INFO [MediumScrapperApp.utils:117] Error get_articles_list_based_on_query: module 'datetime' has no attribute 'utcfromtimestamp' at line no: 111
-[13-May-2020 00:12:32] INFO [MediumScrapperApp.utils:117] Error get_articles_list_based_on_query: year 52332 is out of range at line no: 111
-[13-May-2020 00:14:41] INFO [MediumScrapperApp.utils:84] Error while scrapping url: https://medium.com/a5a3141be597/ad7f01538c56 ---- Expecting value: line 1 column 1 (char 0) ---- 71
-[13-May-2020 00:14:43] INFO [MediumScrapperApp.utils:84] Error while scrapping url: https://medium.com/b625d7437af9/77222a074cba ---- Expecting value: line 1 column 1 (char 0) ---- 71
-[13-May-2020 00:14:45] INFO [MediumScrapperApp.utils:84] Error while scrapping url: https://medium.com/64ae50beefe/eb8f3870dde3 ---- Expecting value: line 1 column 1 (char 0) ---- 71
-[13-May-2020 00:14:46] INFO [MediumScrapperApp.utils:84] Error while scrapping url: https://medium.com/715242f242dd/67e9fce63079 ---- Expecting value: line 1 column 1 (char 0) ---- 71
-[13-May-2020 00:17:32] INFO [MediumScrapperApp.utils:84] Error while scrapping url: https://medium.com/6a53613f4e6d/f492d4ff8809 ---- Expecting value: line 1 column 1 (char 0) ---- 71
-[13-May-2020 00:17:38] INFO [MediumScrapperApp.utils:84] Error while scrapping url: https://medium.com/9a5b40458190/9331251e5e33 ---- Expecting value: line 1 column 1 (char 0) ---- 71
-[13-May-2020 00:17:44] INFO [MediumScrapperApp.utils:84] Error while scrapping url: https://medium.com/133088091c5f/6d31f898c2bf ---- Expecting value: line 1 column 1 (char 0) ---- 71
-[13-May-2020 00:17:52] INFO [MediumScrapperApp.utils:84] Error while scrapping url: https://medium.com/dd1b4d3c58e6/e5f15044c9d2 ---- Expecting value: line 1 column 1 (char 0) ---- 71
-[13-May-2020 00:17:55] INFO [MediumScrapperApp.utils:84] Error while scrapping url: https://medium.com/895388e0c375/d894459423ad ---- Expecting value: line 1 column 1 (char 0) ---- 71
+[13-May-2020 00:21:11] ERROR [MediumScrapperApp.views:120] GetNextArticlesAPI: name 'response_json_data' is not defined at 108
+[13-May-2020 00:22:17] INFO [MediumScrapperApp.utils:146] Error get_next_n_articles: name 'html' is not defined at line no: 123
+[13-May-2020 00:22:46] INFO [MediumScrapperApp.utils:84] Error while scrapping url: https://medium.com/61a188b1ce99/fcae7a8d8723 ---- Expecting value: line 1 column 1 (char 0) ---- 71
+[13-May-2020 00:22:48] INFO [MediumScrapperApp.utils:84] Error while scrapping url: https://medium.com/befe3c58c77a/a493b371f7a7 ---- Expecting value: line 1 column 1 (char 0) ---- 71
+[13-May-2020 00:22:55] INFO [MediumScrapperApp.utils:84] Error while scrapping url: https://medium.com/9833cc01f515/f7c37e462d92 ---- Expecting value: line 1 column 1 (char 0) ---- 71
+[13-May-2020 00:22:58] INFO [MediumScrapperApp.utils:84] Error while scrapping url: https://medium.com/966b71072d54/436c8adcfc19 ---- Expecting value: line 1 column 1 (char 0) ---- 71
+[13-May-2020 00:23:03] INFO [MediumScrapperApp.utils:84] Error while scrapping url: https://medium.com/d55832d5b3b1/a13aa1734a74 ---- Expecting value: line 1 column 1 (char 0) ---- 71
+[13-May-2020 00:23:05] INFO [MediumScrapperApp.utils:84] Error while scrapping url: https://medium.com/eba9611589e0/326cfb2d20ed ---- Expecting value: line 1 column 1 (char 0) ---- 71
+[13-May-2020 00:23:09] INFO [MediumScrapperApp.utils:84] Error while scrapping url: https://medium.com/a5513b2d00b7/d59ff15a4e68 ---- Expecting value: line 1 column 1 (char 0) ---- 71
+[13-May-2020 00:23:11] INFO [MediumScrapperApp.utils:84] Error while scrapping url: https://medium.com/94dc0e4baf1a/8099b3c7b0af ---- Expecting value: line 1 column 1 (char 0) ---- 71
+[13-May-2020 00:23:14] INFO [MediumScrapperApp.utils:84] Error while scrapping url: https://medium.com/1b3c7e0c32a1/caecc56a587f ---- Expecting value: line 1 column 1 (char 0) ---- 71
+[13-May-2020 00:23:17] INFO [MediumScrapperApp.utils:84] Error while scrapping url: https://medium.com/be743a65b006/3b782caa3fd6 ---- Expecting value: line 1 column 1 (char 0) ---- 71

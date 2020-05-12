@@ -120,7 +120,6 @@ def get_articles_list_based_on_query(query):
 def get_next_n_articles(start,n,response_json_data):
     articles = []
     try:
-        response_json_data = json.loads(html.decode().replace("])}while(1);</x>",""))
         stream_items = response_json_data["payload"]["streamItems"] 
         for stream_item in stream_items[start:start+n]:
             article = {}

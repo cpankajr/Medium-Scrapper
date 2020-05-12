@@ -2,14 +2,11 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication   # noqa F401
-
-from django.conf import settings
-from django.contrib.auth import authenticate, login, logout
+from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import render, HttpResponse, \
     HttpResponseRedirect
 
 import json
-import datetime
 import logging
 import time
 import uuid
@@ -48,10 +45,12 @@ class GetArticlesBasedonQueryAPI(APIView):
             try:
                 article_data = json.loads(MediumSearchData.objects.get(user_query=user_query.lower()).search_data)
             except ObjectDoesNotExist:
-                articles_data = get_articles_based_on_query(user_query=user_query.lower())
+                articles_data = get_articles_based_on_query(user_query.lower())
                 search_obj = MediumSearchData.objects.create(user_query=user_query.lower(),search_data=json.dumps(articles_data))
-                save_article_details_in_db.delay(articles_data,search_obj)
+                save_article_details_in_db.delay(articles_data,search_obj.pk)
+
             response['status'] = 200
+            response['articles_data'] = articles_data
         except Exception as e:
             exc_type, exc_obj, exc_tb = sys.exc_info()
             logger.error("GetArticlesBasedonQuery: %s at %s",
@@ -62,16 +61,17 @@ class GetArticlesBasedonQueryAPI(APIView):
 GetArticlesBasedonQuery = GetArticlesBasedonQueryAPI.as_view()
 
 @shared_task
-def save_article_details_in_db(articles_data,search_obj):
+def save_article_details_in_db(articles_data,search_obj_pk):
+    search_obj = MediumSearchData.objects.get(pk=search_obj_pk)
     articles_objs = []
     for article in articles_data:
         try:
             articles_objs.append(MediumArticle.objects.get(unique_id=article ['unique-id']))
         except ObjectDoesNotExist:
             contents,tags = get_article_html(article['link'])
-            articles_objs.append(MediumArticle.objects.get(unique_id=article ['unique-id'],
+            articles_objs.append(MediumArticle.objects.create(unique_id=article ['unique-id'],
                                                     creator=article["author"],
-                                                    title=articles["title"],
+                                                    title=article["title"],
                                                     read_time = article['reading_time'],
                                                     blog = contents,
                                                     tags = tags))

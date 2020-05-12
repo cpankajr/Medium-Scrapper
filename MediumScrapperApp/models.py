@@ -41,7 +41,7 @@ class MediumArticle(models.Model):
     
     title = models.TextField(default="")
     
-    date = models.DateField()
+    date = models.DateField(default=now)
     
     read_time = models.IntegerField(default=0)
         

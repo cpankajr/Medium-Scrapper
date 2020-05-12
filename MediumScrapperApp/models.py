@@ -21,6 +21,8 @@ class MediumSearchData(models.Model):
     articles= models.ManyToManyField(
         'MediumArticle', blank=True)
 
+    search_data = models.TextField(default="[]")
+
     created_date = models.DateTimeField(auto_now_add=True)
 
     class Meta:
@@ -47,8 +49,7 @@ class MediumArticle(models.Model):
     
     blog = models.TextField(default="")
     
-    tags = models.ManyToManyField(
-        'Tag', blank=True)
+    tags = models.TextField(default="[]")
 
     class Meta:
         verbose_name = "MediumArticle"
@@ -56,15 +57,4 @@ class MediumArticle(models.Model):
 
     def __str__(self):
         return self.title +" - " + self.unique_id
-
-class Tag(models.Model):
-    name = models.TextField(default="")
-
-    class Meta:
-        verbose_name = "Tag"
-        verbose_name_plural = "Tags"
-
-    def __str__(self):
-        return self.name
-
         

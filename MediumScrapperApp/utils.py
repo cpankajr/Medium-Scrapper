@@ -45,9 +45,9 @@ def get_articles_based_on_query(query):
         article['date'] = article_div.findAll('time')[0].get_text()
         article['datetime'] = article_div.findAll('time')[0].get('datetime')
         article['reading_time'] = article_div.findAll('span', class_="readingTime")[0].get('title').split()[0]
-        content , tags = get_article_html(article_link)
+        # content , tags = get_article_html(article_link)
         article ['unique-id'] = article_link.split("-")[-1]
-        article ['tags'] = tags
+        # article ['tags'] = tags
         articles.append(article)
     return articles
 

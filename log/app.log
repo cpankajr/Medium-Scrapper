@@ -1,0 +1,92 @@
+[13-May-2020 21:24:13] ERROR [MediumScrapperApp.views:130] GetNextArticlesAPI: database is locked at 119
+[13-May-2020 21:24:16] ERROR [MediumScrapperApp.views:130] GetNextArticlesAPI: database is locked at 119
+[13-May-2020 21:24:17] ERROR [MediumScrapperApp.views:130] GetNextArticlesAPI: database is locked at 119
+[13-May-2020 21:24:23] ERROR [MediumScrapperApp.views:130] GetNextArticlesAPI: database is locked at 119
+[13-May-2020 21:24:32] ERROR [MediumScrapperApp.views:130] GetNextArticlesAPI: database is locked at 119
+[13-May-2020 21:24:32] ERROR [MediumScrapperApp.views:130] GetNextArticlesAPI: database is locked at 119
+[13-May-2020 21:24:33] ERROR [MediumScrapperApp.views:130] GetNextArticlesAPI: database is locked at 119
+[13-May-2020 21:24:34] ERROR [MediumScrapperApp.views:130] GetNextArticlesAPI: database is locked at 119
+[13-May-2020 21:24:38] ERROR [MediumScrapperApp.views:130] GetNextArticlesAPI: database is locked at 119
+[13-May-2020 21:24:42] ERROR [MediumScrapperApp.views:130] GetNextArticlesAPI: database is locked at 119
+[13-May-2020 21:24:50] ERROR [MediumScrapperApp.views:130] GetNextArticlesAPI: database is locked at 119
+[13-May-2020 22:00:23] INFO [MediumScrapperApp.utils:84] Error get_article_page_data url: https://medium.com/f31c53bbf232/6e2861917949 ERROR: Expecting value: line 1 column 1 (char 0) at line no: 71
+[13-May-2020 22:00:23] INFO [MediumScrapperApp.utils:84] Error get_article_page_data url: https://medium.com/f31c53bbf232/6e2861917949 ERROR: Expecting value: line 1 column 1 (char 0) at line no: 71
+[13-May-2020 22:00:23] INFO [MediumScrapperApp.utils:84] Error get_article_page_data url: https://medium.com/23c113d29ca6/a169c378fe4 ERROR: Expecting value: line 1 column 1 (char 0) at line no: 71
+[13-May-2020 22:00:23] INFO [MediumScrapperApp.utils:84] Error get_article_page_data url: https://medium.com/23c113d29ca6/a169c378fe4 ERROR: Expecting value: line 1 column 1 (char 0) at line no: 71
+[13-May-2020 22:00:23] INFO [MediumScrapperApp.utils:84] Error get_article_page_data url: https://medium.com/31cc7c6d24e6/c670d63efd55 ERROR: Expecting value: line 1 column 1 (char 0) at line no: 71
+[13-May-2020 22:00:23] INFO [MediumScrapperApp.utils:84] Error get_article_page_data url: https://medium.com/23c113d29ca6/a169c378fe4 ERROR: Expecting value: line 1 column 1 (char 0) at line no: 71
+[13-May-2020 22:00:24] INFO [MediumScrapperApp.utils:84] Error get_article_page_data url: https://medium.com/f31c53bbf232/6e2861917949 ERROR: Expecting value: line 1 column 1 (char 0) at line no: 71
+[13-May-2020 22:00:24] INFO [MediumScrapperApp.utils:84] Error get_article_page_data url: https://medium.com/c4a46ba30c0f/f0dcc0feae31 ERROR: Expecting value: line 1 column 1 (char 0) at line no: 71
+[13-May-2020 22:00:24] INFO [MediumScrapperApp.utils:84] Error get_article_page_data url: https://medium.com/f31c53bbf232/343942c6f142 ERROR: Expecting value: line 1 column 1 (char 0) at line no: 71
+[13-May-2020 22:00:26] INFO [MediumScrapperApp.utils:84] Error get_article_page_data url: https://medium.com/f31c53bbf232/343942c6f142 ERROR: Expecting value: line 1 column 1 (char 0) at line no: 71
+[13-May-2020 22:00:27] INFO [MediumScrapperApp.utils:84] Error get_article_page_data url: https://medium.com/56a0e8c463f6/4348da841f9 ERROR: Expecting value: line 1 column 1 (char 0) at line no: 71
+[13-May-2020 22:00:28] INFO [MediumScrapperApp.utils:84] Error get_article_page_data url: https://medium.com/df8882dd925f/dd8f2b13c279 ERROR: Expecting value: line 1 column 1 (char 0) at line no: 71
+[13-May-2020 22:00:29] INFO [MediumScrapperApp.utils:84] Error get_article_page_data url: https://medium.com/8b12b64696c9/e731db715026 ERROR: Expecting value: line 1 column 1 (char 0) at line no: 71
+[13-May-2020 22:00:30] INFO [MediumScrapperApp.utils:84] Error get_article_page_data url: https://medium.com/ecf27b54f743/2a250aa9b1c5 ERROR: Expecting value: line 1 column 1 (char 0) at line no: 71
+[13-May-2020 22:00:31] INFO [MediumScrapperApp.utils:84] Error get_article_page_data url: https://medium.com/8b12b64696c9/e731db715026 ERROR: Expecting value: line 1 column 1 (char 0) at line no: 71
+[13-May-2020 22:00:31] INFO [MediumScrapperApp.utils:84] Error get_article_page_data url: https://medium.com/de03d3e5fe23/6be32246a9ba ERROR: Expecting value: line 1 column 1 (char 0) at line no: 71
+[13-May-2020 22:00:32] INFO [MediumScrapperApp.utils:84] Error get_article_page_data url: https://medium.com/f31c53bbf232/92bc00ff9114 ERROR: Expecting value: line 1 column 1 (char 0) at line no: 71
+[13-May-2020 22:00:34] INFO [MediumScrapperApp.utils:84] Error get_article_page_data url: https://medium.com/d54dc1abea7b/7b397569cc27 ERROR: Expecting value: line 1 column 1 (char 0) at line no: 71
+[13-May-2020 22:00:34] INFO [MediumScrapperApp.utils:84] Error get_article_page_data url: https://medium.com/f31c53bbf232/92bc00ff9114 ERROR: Expecting value: line 1 column 1 (char 0) at line no: 71
+[13-May-2020 22:00:36] INFO [MediumScrapperApp.utils:84] Error get_article_page_data url: https://medium.com/4fa155fcdbb1/7aafa739ed13 ERROR: Expecting value: line 1 column 1 (char 0) at line no: 71
+[13-May-2020 22:00:37] INFO [MediumScrapperApp.utils:84] Error get_article_page_data url: https://medium.com/d4296dee3c38/f57003a7b56c ERROR: Expecting value: line 1 column 1 (char 0) at line no: 71
+[13-May-2020 22:00:38] INFO [MediumScrapperApp.utils:84] Error get_article_page_data url: https://medium.com/4fa155fcdbb1/7aafa739ed13 ERROR: Expecting value: line 1 column 1 (char 0) at line no: 71
+[13-May-2020 22:00:39] INFO [MediumScrapperApp.utils:84] Error get_article_page_data url: https://medium.com/1b1eb65b0e5e/3766fe462294 ERROR: Expecting value: line 1 column 1 (char 0) at line no: 71
+[13-May-2020 22:00:39] INFO [MediumScrapperApp.utils:84] Error get_article_page_data url: https://medium.com/1b1eb65b0e5e/3766fe462294 ERROR: Expecting value: line 1 column 1 (char 0) at line no: 71
+[13-May-2020 22:00:39] INFO [MediumScrapperApp.utils:84] Error get_article_page_data url: https://medium.com/c939c3920fa3/7ad82f4c9778 ERROR: Expecting value: line 1 column 1 (char 0) at line no: 71
+[13-May-2020 22:00:39] INFO [MediumScrapperApp.utils:84] Error get_article_page_data url: https://medium.com/c939c3920fa3/7ad82f4c9778 ERROR: Expecting value: line 1 column 1 (char 0) at line no: 71
+[13-May-2020 22:00:40] INFO [MediumScrapperApp.utils:84] Error get_article_page_data url: https://medium.com/583046d8a0b9/4f38f86da41d ERROR: Expecting value: line 1 column 1 (char 0) at line no: 71
+[13-May-2020 22:00:40] INFO [MediumScrapperApp.utils:84] Error get_article_page_data url: https://medium.com/c939c3920fa3/7ad82f4c9778 ERROR: Expecting value: line 1 column 1 (char 0) at line no: 71
+[13-May-2020 22:00:40] INFO [MediumScrapperApp.utils:84] Error get_article_page_data url: https://medium.com/1b1eb65b0e5e/3766fe462294 ERROR: Expecting value: line 1 column 1 (char 0) at line no: 71
+[13-May-2020 22:00:40] INFO [MediumScrapperApp.utils:84] Error get_article_page_data url: https://medium.com/583046d8a0b9/4f38f86da41d ERROR: Expecting value: line 1 column 1 (char 0) at line no: 71
+[13-May-2020 22:00:42] INFO [MediumScrapperApp.utils:84] Error get_article_page_data url: https://medium.com/f4fbf6d130e3/a2f9b7d55aa2 ERROR: Expecting value: line 1 column 1 (char 0) at line no: 71
+[13-May-2020 22:00:42] INFO [MediumScrapperApp.utils:84] Error get_article_page_data url: https://medium.com/634b2753a09e/36eeba60b208 ERROR: Expecting value: line 1 column 1 (char 0) at line no: 71
+[13-May-2020 22:00:42] INFO [MediumScrapperApp.utils:84] Error get_article_page_data url: https://medium.com/634b2753a09e/36eeba60b208 ERROR: Expecting value: line 1 column 1 (char 0) at line no: 71
+[13-May-2020 22:00:43] INFO [MediumScrapperApp.utils:84] Error get_article_page_data url: https://medium.com/f4fbf6d130e3/a2f9b7d55aa2 ERROR: Expecting value: line 1 column 1 (char 0) at line no: 71
+[13-May-2020 22:00:43] INFO [MediumScrapperApp.utils:84] Error get_article_page_data url: https://medium.com/f4fbf6d130e3/a2f9b7d55aa2 ERROR: Expecting value: line 1 column 1 (char 0) at line no: 71
+[13-May-2020 22:00:43] INFO [MediumScrapperApp.utils:84] Error get_article_page_data url: https://medium.com/634b2753a09e/36eeba60b208 ERROR: Expecting value: line 1 column 1 (char 0) at line no: 71
+[13-May-2020 22:00:43] INFO [MediumScrapperApp.utils:84] Error get_article_page_data url: https://medium.com/8caf460293c2/e09868458204 ERROR: Expecting value: line 1 column 1 (char 0) at line no: 71
+[13-May-2020 22:00:43] INFO [MediumScrapperApp.utils:84] Error get_article_page_data url: https://medium.com/61fc94a0eebd/b2cceb68220d ERROR: Expecting value: line 1 column 1 (char 0) at line no: 71
+[13-May-2020 22:00:43] INFO [MediumScrapperApp.utils:84] Error get_article_page_data url: https://medium.com/8caf460293c2/e09868458204 ERROR: Expecting value: line 1 column 1 (char 0) at line no: 71
+[13-May-2020 22:00:45] INFO [MediumScrapperApp.utils:84] Error get_article_page_data url: https://medium.com/d54dc1abea7b/3968bebc6716 ERROR: Expecting value: line 1 column 1 (char 0) at line no: 71
+[13-May-2020 22:00:46] INFO [MediumScrapperApp.utils:84] Error get_article_page_data url: https://medium.com/61fc94a0eebd/b2cceb68220d ERROR: Expecting value: line 1 column 1 (char 0) at line no: 71
+[13-May-2020 22:00:46] INFO [MediumScrapperApp.utils:84] Error get_article_page_data url: https://medium.com/61fc94a0eebd/b2cceb68220d ERROR: Expecting value: line 1 column 1 (char 0) at line no: 71
+[13-May-2020 22:00:46] INFO [MediumScrapperApp.utils:84] Error get_article_page_data url: https://medium.com/d4fd34fa2320/d0d40f0b0cf1 ERROR: Expecting value: line 1 column 1 (char 0) at line no: 71
+[13-May-2020 22:00:46] INFO [MediumScrapperApp.utils:84] Error get_article_page_data url: https://medium.com/d54dc1abea7b/3968bebc6716 ERROR: Expecting value: line 1 column 1 (char 0) at line no: 71
+[13-May-2020 22:00:47] INFO [MediumScrapperApp.utils:84] Error get_article_page_data url: https://medium.com/d4fd34fa2320/d0d40f0b0cf1 ERROR: Expecting value: line 1 column 1 (char 0) at line no: 71
+[13-May-2020 22:00:47] INFO [MediumScrapperApp.utils:84] Error get_article_page_data url: https://medium.com/d54dc1abea7b/3968bebc6716 ERROR: Expecting value: line 1 column 1 (char 0) at line no: 71
+[13-May-2020 22:00:47] INFO [MediumScrapperApp.utils:84] Error get_article_page_data url: https://medium.com/42c5d7cc78ca/e95f54a71cb3 ERROR: Expecting value: line 1 column 1 (char 0) at line no: 71
+[13-May-2020 22:00:48] INFO [MediumScrapperApp.utils:84] Error get_article_page_data url: https://medium.com/787e89970285/816d9a644822 ERROR: Expecting value: line 1 column 1 (char 0) at line no: 71
+[13-May-2020 22:00:49] INFO [MediumScrapperApp.utils:84] Error get_article_page_data url: https://medium.com/d4296dee3c38/286918c02311 ERROR: Expecting value: line 1 column 1 (char 0) at line no: 71
+[13-May-2020 22:00:49] INFO [MediumScrapperApp.utils:84] Error get_article_page_data url: https://medium.com/42c5d7cc78ca/e95f54a71cb3 ERROR: Expecting value: line 1 column 1 (char 0) at line no: 71
+[13-May-2020 22:00:49] INFO [MediumScrapperApp.utils:84] Error get_article_page_data url: https://medium.com/787e89970285/816d9a644822 ERROR: Expecting value: line 1 column 1 (char 0) at line no: 71
+[13-May-2020 22:00:50] INFO [MediumScrapperApp.utils:84] Error get_article_page_data url: https://medium.com/fbd95593ed9c/a0f0bfbf1be ERROR: Expecting value: line 1 column 1 (char 0) at line no: 71
+[13-May-2020 22:00:50] INFO [MediumScrapperApp.utils:84] Error get_article_page_data url: https://medium.com/5676a8bfb88a/e29a370c1d97 ERROR: Expecting value: line 1 column 1 (char 0) at line no: 71
+[13-May-2020 22:00:50] INFO [MediumScrapperApp.utils:84] Error get_article_page_data url: https://medium.com/fbd95593ed9c/a0f0bfbf1be ERROR: Expecting value: line 1 column 1 (char 0) at line no: 71
+[13-May-2020 22:00:51] INFO [MediumScrapperApp.utils:84] Error get_article_page_data url: https://medium.com/d4296dee3c38/286918c02311 ERROR: Expecting value: line 1 column 1 (char 0) at line no: 71
+[13-May-2020 22:00:51] INFO [MediumScrapperApp.utils:84] Error get_article_page_data url: https://medium.com/44f352f83474/508b4edd39c4 ERROR: Expecting value: line 1 column 1 (char 0) at line no: 71
+[13-May-2020 22:00:52] INFO [MediumScrapperApp.utils:84] Error get_article_page_data url: https://medium.com/e686f9889fc0/351a1239564c ERROR: Expecting value: line 1 column 1 (char 0) at line no: 71
+[13-May-2020 22:00:52] INFO [MediumScrapperApp.utils:84] Error get_article_page_data url: https://medium.com/5676a8bfb88a/e29a370c1d97 ERROR: Expecting value: line 1 column 1 (char 0) at line no: 71
+[13-May-2020 22:00:52] INFO [MediumScrapperApp.utils:84] Error get_article_page_data url: https://medium.com/d14973fad051/df154a46628f ERROR: Expecting value: line 1 column 1 (char 0) at line no: 71
+[13-May-2020 22:00:52] INFO [MediumScrapperApp.utils:84] Error get_article_page_data url: https://medium.com/e686f9889fc0/351a1239564c ERROR: Expecting value: line 1 column 1 (char 0) at line no: 71
+[13-May-2020 22:00:53] INFO [MediumScrapperApp.utils:84] Error get_article_page_data url: https://medium.com/44f352f83474/508b4edd39c4 ERROR: Expecting value: line 1 column 1 (char 0) at line no: 71
+[13-May-2020 22:00:53] INFO [MediumScrapperApp.utils:84] Error get_article_page_data url: https://medium.com/d14973fad051/df154a46628f ERROR: Expecting value: line 1 column 1 (char 0) at line no: 71
+[13-May-2020 22:01:06] INFO [MediumScrapperApp.utils:84] Error get_article_page_data url: https://medium.com/d14973fad051/2ec0a9b2d2c1 ERROR: Expecting value: line 1 column 1 (char 0) at line no: 71
+[13-May-2020 22:01:06] INFO [MediumScrapperApp.utils:84] Error get_article_page_data url: https://medium.com/980fdeabf6d0/44d3e902994e ERROR: Expecting value: line 1 column 1 (char 0) at line no: 71
+[13-May-2020 22:01:08] INFO [MediumScrapperApp.utils:84] Error get_article_page_data url: https://medium.com/4be6b5abda8c/f9e13f695558 ERROR: Expecting value: line 1 column 1 (char 0) at line no: 71
+[13-May-2020 22:01:10] INFO [MediumScrapperApp.utils:84] Error get_article_page_data url: https://medium.com/8caf460293c2/66d07098553e ERROR: Expecting value: line 1 column 1 (char 0) at line no: 71
+[13-May-2020 22:01:11] INFO [MediumScrapperApp.utils:84] Error get_article_page_data url: https://medium.com/44ef91a67942/aab465dc6812 ERROR: Expecting value: line 1 column 1 (char 0) at line no: 71
+[13-May-2020 22:01:14] INFO [MediumScrapperApp.utils:84] Error get_article_page_data url: https://medium.com/d970796de6a0/898c8598861d ERROR: Expecting value: line 1 column 1 (char 0) at line no: 71
+[13-May-2020 22:01:14] INFO [MediumScrapperApp.utils:84] Error get_article_page_data url: https://medium.com/ed034bf0221/88368e9b08cf ERROR: Expecting value: line 1 column 1 (char 0) at line no: 71
+[13-May-2020 22:01:18] INFO [MediumScrapperApp.utils:84] Error get_article_page_data url: https://medium.com/f3001329301d/a66ef09ff2c ERROR: Expecting value: line 1 column 1 (char 0) at line no: 71
+[13-May-2020 22:01:21] INFO [MediumScrapperApp.utils:84] Error get_article_page_data url: https://medium.com/32ae4dad2346/73556a86a454 ERROR: Expecting value: line 1 column 1 (char 0) at line no: 71
+[13-May-2020 22:01:22] INFO [MediumScrapperApp.utils:84] Error get_article_page_data url: https://medium.com/f31c53bbf232/99b85c176727 ERROR: Expecting value: line 1 column 1 (char 0) at line no: 71
+[13-May-2020 22:01:23] INFO [MediumScrapperApp.utils:84] Error get_article_page_data url: https://medium.com/50b38e805cd9/d500cc5cea37 ERROR: Expecting value: line 1 column 1 (char 0) at line no: 71
+[13-May-2020 22:01:24] INFO [MediumScrapperApp.utils:84] Error get_article_page_data url: https://medium.com/ec4c2582cea/36d5104e117 ERROR: Expecting value: line 1 column 1 (char 0) at line no: 71
+[13-May-2020 22:01:27] INFO [MediumScrapperApp.utils:84] Error get_article_page_data url: https://medium.com/55d415401bbd/6c7064b22f1f ERROR: Expecting value: line 1 column 1 (char 0) at line no: 71
+[13-May-2020 22:01:29] INFO [MediumScrapperApp.utils:84] Error get_article_page_data url: https://medium.com/6c1e58d71bbe/8b00b43406b2 ERROR: Expecting value: line 1 column 1 (char 0) at line no: 71
+[13-May-2020 22:01:29] INFO [MediumScrapperApp.utils:84] Error get_article_page_data url: https://medium.com/459e5127d38d/cc4ce8d9aff3 ERROR: Expecting value: line 1 column 1 (char 0) at line no: 71
+[13-May-2020 22:01:31] INFO [MediumScrapperApp.utils:84] Error get_article_page_data url: https://medium.com/80f4a68ac460/8e95d95e1a8d ERROR: Expecting value: line 1 column 1 (char 0) at line no: 71
+[13-May-2020 22:01:31] INFO [MediumScrapperApp.utils:84] Error get_article_page_data url: https://medium.com/b06cd900c05/819cf31da547 ERROR: Expecting value: line 1 column 1 (char 0) at line no: 71
+[13-May-2020 22:01:33] INFO [MediumScrapperApp.utils:84] Error get_article_page_data url: https://medium.com/d62d5b6ccd4f/6318c55a053d ERROR: Expecting value: line 1 column 1 (char 0) at line no: 71
+[13-May-2020 22:01:33] INFO [MediumScrapperApp.utils:84] Error get_article_page_data url: https://medium.com/e00dd3fd7508/3b35a4073a5c ERROR: Expecting value: line 1 column 1 (char 0) at line no: 71

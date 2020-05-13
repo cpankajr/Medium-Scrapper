@@ -65,7 +65,7 @@ def get_article_page_data(url):
         metadata  = json.loads(str(soup.findAll('script',{"type":"application/ld+json"})[0].decode_contents()))
         tags = [x.replace("Tag:","").lower() for x in metadata["keywords"] if "Tag:" in x]
 
-        article_unique_id = url.split("-")[-1]
+        article_unique_id = url.split("/")[-1]
         
         html = get_html("https://medium.com/_/api/posts/"+article_unique_id+"/responsesStream")
         response_json_data = json.loads(html.decode().replace("])}while(1);</x>",""))

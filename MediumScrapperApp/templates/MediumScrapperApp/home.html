@@ -3,7 +3,7 @@
 {% load static %}
 <div class="container">
 	<br>
-	<div>
+	<div class="tag-input-div">
 		<div class="input-group mb-3">
 		  <input type="text" class="form-control" placeholder="Enter Tag" aria-label="Enter Tag" id="tags-input">
 		  <div class="input-group-append">
@@ -13,7 +13,17 @@
 		  </div>
 		</div>			
 	</div>
+	<div id="search-loader" style="display: none;">
+		<div class="d-flex justify-content-center text-primary">
+		  <div class="spinner-border" role="status">
+		    <span class="sr-only">Loading...</span>
+		  </div>
+		</div>
+		<br>
+	</div>
 	<div class="search-results">
+	</div>
+	<div class="suggested-tags">
 	</div>
 	<div class="pagination-div d-flex justify-content-center">
 	</div>

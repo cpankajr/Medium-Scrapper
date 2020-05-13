@@ -1,4 +1,21 @@
 {% extends 'MediumScrapperApp/base.html' %}
 {% block content %}
 {% load static %}
+<div class="container">
+	<br>
+	<div>
+		<div class="input-group mb-3">
+		  <input type="text" class="form-control" placeholder="Enter Tag" aria-label="Enter Tag" id="tags-input">
+		  <div class="input-group-append">
+		    <button class="btn btn-outline-primary" type="button" id="search-btn">
+		    	<span>Search</span>
+			</button>
+		  </div>
+		</div>			
+	</div>
+	<div class="search-results">
+	</div>
+	<div class="pagination-div d-flex justify-content-center">
+	</div>
+</div>
 {% endblock %}

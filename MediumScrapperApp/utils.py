@@ -25,10 +25,12 @@ def get_tag_suggestion(query):
     html = get_html('https://medium.com/search/tags?q='+str(query))
     soup = BeautifulSoup(html, 'html.parser')
     main_tags_div = soup.find_all("ul", class_="tags tags--postTags tags--light")
+    tags = []
     if len(main_tags_div)>0:
         tag_divs = main_tags_div[0].find_all("li")
         for tag_div in tag_divs:
-            print(tag_div.getText())
+            tags.append(tag_div.getText())
+    return tags
 
 def get_articles_based_on_query(query):
     html = get_html('https://medium.com/tag/'+str(query)+"/latest")
@@ -87,8 +89,9 @@ def get_articles_list_based_on_query(query):
     response_json_data = {}
     no_of_results = 0
     try:
+        query = query.replace(" ","-")
         time_stamp = int(datetime.datetime.now().timestamp()*1000)
-        print("https://medium.com/_/api/tags/"+str(query)+"/stream?limit=100&to="+str(time_stamp)+"&sortBy=published-at")
+        # print("https://medium.com/_/api/tags/"+str(query)+"/stream?limit=100&to="+str(time_stamp)+"&sortBy=published-at")
         html = get_html("https://medium.com/_/api/tags/"+str(query)+"/stream?limit=100&to="+str(time_stamp)+"&sortBy=published-at")
         response_json_data = json.loads(html.decode().replace("])}while(1);</x>",""))
         stream_items = response_json_data["payload"]["streamItems"]
@@ -108,9 +111,10 @@ def get_articles_list_based_on_query(query):
             article['author'] = author_name
             article['link'] = article_link
             article['datetime'] = article_date
-            article['date'] = datetime.datetime.utcfromtimestamp(article_date/1000.0).strftime('%Y-%m-%d %H:%M:%S')
+            article['date'] = datetime.datetime.utcfromtimestamp(article_date/1000.0).strftime('%-d %b %Y')
             article['reading_time'] = reading_time
             article ['unique-id'] = article_unique_id
+            article ['claps'] = claps
             articles.append(article)
     except Exception as e:
         exc_type, exc_obj, exc_tb = sys.exc_info()
@@ -136,9 +140,10 @@ def get_next_n_articles(start,n,response_json_data):
             article['author'] = author_name
             article['link'] = article_link
             article['datetime'] = article_date
-            article['date'] = datetime.datetime.utcfromtimestamp(article_date/1000.0).strftime('%Y-%m-%d %H:%M:%S')
+            article['date'] = datetime.datetime.utcfromtimestamp(article_date/1000.0).strftime('%-d %b %Y')
             article['reading_time'] = reading_time
             article ['unique-id'] = article_unique_id
+            article ['claps'] = claps
             articles.append(article)
     except Exception as e:
         exc_type, exc_obj, exc_tb = sys.exc_info()

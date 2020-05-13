@@ -43,7 +43,9 @@ class GetArticlesBasedonQueryAPI(APIView):
             user_query = data['user_query']
             articles_data=[]
             try:
-                articles_data = json.loads(MediumSearchData.objects.get(user_query=user_query.lower()).search_data)[:10]
+                search_obj = MediumSearchData.objects.get(user_query=user_query.lower())
+                articles_data = json.loads(search_obj.search_data)[:10]
+                no_of_results = search_obj.no_of_results
             except ObjectDoesNotExist:
                 articles_data, response_json_data, no_of_results = get_articles_list_based_on_query(user_query.lower())
                 search_obj = MediumSearchData.objects.create(user_query=user_query.lower(),
@@ -53,8 +55,14 @@ class GetArticlesBasedonQueryAPI(APIView):
                 search_obj_pk = search_obj.pk
                 save_article_details_in_db.delay(articles_data,search_obj_pk)
 
-            response['status'] = 200
-            response['articles_data'] = articles_data
+            if len(articles_data) == 0:
+                tags = get_tag_suggestion(user_query)
+                response['status'] = 301
+                response['suggested_tags'] = tags
+            else:
+                response['status'] = 200
+                response['articles_data'] = articles_data
+                response['no_of_results'] = no_of_results
         except Exception as e:
             exc_type, exc_obj, exc_tb = sys.exc_info()
             logger.error("GetArticlesBasedonQuery: %s at %s",
@@ -113,6 +121,7 @@ class GetNextArticlesAPI(APIView):
                 save_article_details_in_db.delay(articles_data,search_obj_pk)
                 response['status'] = 200
                 response['articles_data'] = articles_data
+                response['no_of_results'] = search_obj.no_of_results
             else:
                 response['status'] = 301
         except Exception as e:

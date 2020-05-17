@@ -132,3 +132,21 @@ class GetNextArticlesAPI(APIView):
         return Response(data=response)
 
 GetNextArticles = GetNextArticlesAPI.as_view()
+
+def GetArticlesPage(request):
+    if request.method == "GET":
+        
+        article_link = request.GET["medium-url"]
+        article_unique_id = article_link.split("/")[-1]
+        
+        try:
+            articles_obj = MediumArticle.objects.get(unique_id=article_unique_id)
+            contents = articles_obj.blog
+            comment_list = json.loads(comments)
+        except ObjectDoesNotExist:
+            contents, tags, comment_list = get_article_page_data(article_link)
+
+        return render(request,"MediumScrapperApp/article_page.html",{
+            "contents":contents,
+            "comment_list":comment_list
+            })

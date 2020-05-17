@@ -59,9 +59,12 @@ def get_article_page_data(url):
         comments = []
         html = get_html(url)
         soup = BeautifulSoup(html, 'html.parser')
+        if soup.find('style'):
+            for i in soup.select('style'):
+                content += str(i)
         if soup.find('article'):
             for i in soup.select('article'):
-                content += i.get_text()
+                content += str(i.findChildren("div" , recursive=False)[0])
         metadata  = json.loads(str(soup.findAll('script',{"type":"application/ld+json"})[0].decode_contents()))
         tags = [x.replace("Tag:","").lower() for x in metadata["keywords"] if "Tag:" in x]
 
@@ -80,6 +83,7 @@ def get_article_page_data(url):
             comment ["user"] = soup.find('article').findAll("section")[1].findAll('a')[1].get_text()
             comments.append(comment)
     except Exception as e:
+        print(e)
         exc_type, exc_obj, exc_tb = sys.exc_info()
         logger.info("Error get_article_page_data url: "+ str(url) +" ERROR: "+str(e)+" at line no: " + str(exc_tb.tb_lineno))
     return content , tags,comments

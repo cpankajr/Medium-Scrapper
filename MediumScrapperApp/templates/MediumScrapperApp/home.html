@@ -13,19 +13,57 @@
 		  </div>
 		</div>			
 	</div>
-	<div id="search-loader" style="display: none;">
-		<div class="d-flex justify-content-center text-primary">
-		  <div class="spinner-border" role="status">
-		    <span class="sr-only">Loading...</span>
-		  </div>
+	<div class="row">
+		<div class="col-3 search-history">
+			Recent searches: <br>
+			<div class="search-history-chips">
+				
+			</div>
 		</div>
-		<br>
-	</div>
-	<div class="search-results">
-	</div>
-	<div class="suggested-tags">
-	</div>
-	<div class="pagination-div d-flex justify-content-center">
+		<div class="col-9">	
+			<div id="search-loader" style="display: none;">
+				<div class="d-flex justify-content-center text-primary">
+				  <div class="spinner-border" role="status">
+				    <span class="sr-only">Loading...</span>
+				  </div>
+				</div>
+				<br>
+			</div>
+			<div class="search-results">
+			</div>
+			<div class="suggested-tags">
+			</div>
+			<div class="pagination-div d-flex justify-content-center">
+			</div>
+		</div>
 	</div>
 </div>
+<script type="text/javascript">
+	$('document').ready(function() {
+		function get_cookie(cookiename) {
+		  var cookie_name = cookiename + "=";
+		  var decodedCookie = decodeURIComponent(document.cookie);
+		  var cookie_array = decodedCookie.split(';');
+		  for(var i = 0; i < cookie_array.length; i++) {
+		    var c = cookie_array[i];
+		    while (c.charAt(0) == ' ') {
+		      c = c.substring(1);
+		    }
+		    if (c.indexOf(cookie_name) == 0) {
+		      return c.substring(cookie_name.length, c.length);
+		    }
+		  }
+		  return "";
+		}
+		search_history_array = get_cookie('search_history_array')
+		if (search_history_array!=""){
+		    search_history_array = JSON.parse(search_history_array)
+		    html = ""
+		    for (var i = 0; i < search_history_array.length; i++) {
+				html += '<div class="chip tag-chip">'+search_history_array[i]+'</div>'
+		    }
+			$('.search-history-chips').html(html)
+		}
+	});
+</script>
 {% endblock %}

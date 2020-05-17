@@ -5,6 +5,22 @@ $(document).on("click", "#search-btn", function(e) {
         return;
     }
     $("#search-loader").show()
+    $('.suggested-tags').html("")
+
+    search_history_array = get_cookie('search_history_array')
+    if (search_history_array==""){
+        var search_history_array = [user_query];
+        var json_str = JSON.stringify(search_history_array);
+        set_cookie('search_history_array', json_str);        
+    }
+    else{
+        search_history_array = JSON.parse(search_history_array)
+        search_history_array.unshift(user_query);
+        var json_str = JSON.stringify(search_history_array);
+        set_cookie('search_history_array', json_str);   
+    }
+    $('.search-history-chips').prepend('<div class="chip tag-chip">'+user_query+'</div>')
+
     $.ajax({
         url: '/get-articles-based-on-query/',
         type: "POST",
@@ -13,6 +29,7 @@ $(document).on("click", "#search-btn", function(e) {
         },
         success: function(response) {
             if (response["status"] == 200) {
+                $('.suggested-tags').html("")
                 append_search_results(response["articles_data"])
                 append_pagination_data(response["no_of_results"],1,user_query)
             } else if (response["status"] == 301) {
@@ -25,13 +42,47 @@ $(document).on("click", "#search-btn", function(e) {
     });
 });
 
-function append_suggested_tags(suggested_tags){
+function set_cookie(cookiename,cookievalue) {
+  document.cookie = cookiename + "=" + cookievalue;
 }
 
-function get_result_for_selected_tag(tag) {
+
+function get_cookie(cookiename) {
+  var cookie_name = cookiename + "=";
+  var decodedCookie = decodeURIComponent(document.cookie);
+  var cookie_array = decodedCookie.split(';');
+  for(var i = 0; i < cookie_array.length; i++) {
+    var c = cookie_array[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(cookie_name) == 0) {
+      return c.substring(cookie_name.length, c.length);
+    }
+  }
+  return "";
+}
+
+
+function append_suggested_tags(suggested_tags){
+    html="Results not found <br> <br>"
+    if (suggested_tags.length>0){
+        html+="Suggested Tags: <br>"
+    }
+    else{
+        html+="No suggested ags<br>"   
+    }
+    for (var i = 0; i < suggested_tags.length; i++) {
+        html += '<div class="chip tag-chip">'+suggested_tags[i]+'</div>'
+    }
+    $('.suggested-tags').html(html)
+}
+
+$(document).on("click", ".tag-chip", function(e) {
+    tag= $(this).html()
     document.getElementById("tags-input").value = tag
     $("#search-btn").click()
-}
+});
 
 function append_pagination_data(total_results,current_page,user_query) {
     no_of_pages = Math.ceil(total_results/10)
@@ -65,7 +116,7 @@ function append_search_results(articles_data){
                         </div>\
                   </div>\
                   <div class="card-body">\
-                    <h5 class="card-title">'+articles_data[i]["title"]+'</h5>\
+                    <a target="_blank" href="/article-page/?medium-url='+articles_data[i]["link"]+'"><h5 class="card-title">'+articles_data[i]["title"]+'</h5></a>\
                   </div>\
                   <div class="card-footer" style="border: none;background-color: initial;">\
                     <button type="button" class="btn btn-light btn-outline-danger">\
@@ -93,6 +144,7 @@ function get_articles_by_page(page_no,user_query){
             limit: 10,
         },
         success: function(response) {
+            $('.suggested-tags').html("")
             $(".search-results").html("")
             $(".search-results").show()
 

@@ -1,0 +1,47 @@
+{% extends 'MediumScrapperApp/base.html' %}
+{% block content %}
+{% load static %}
+<style type="text/css">
+</style>
+<div class="container">
+	<br>
+	<div class="mediium-article">
+		{{contents|safe}}
+	</div>
+	<div>
+		<br>
+		<h5><b>Responses:</b></h5>
+		<br>
+		{% if comment_list %}
+			{% for comment in comment_list %}
+				<div class="card" style="width: 100%;">
+				  <div class="card-body">
+				    <h5 class="card-title"><b>{{comment.user}}</b></h5>
+				    <p class="card-text">{{comment.text}}</p>
+				  </div>
+				</div>
+			{% endfor %}
+		{% else %}
+		<div class="card" style="width: 100%;">
+		  <div class="card-body">
+		    <h5 class="card-title">No Responses</h5>
+		    <h6 class="card-subtitle mb-2 text-muted"></h6>
+		  </div>
+		</div>
+		{% endif %}
+	</div>
+</div>
+<br>
+<br>
+<br>
+<script type="text/javascript">
+	$('document').ready(function() {
+		no_script_elmts = document.getElementsByTagName("noscript")
+		while(no_script_elmts.length>0){
+			img_html = no_script_elmts[0].innerHTML
+			no_script_elmts[0].parentElement.innerHTML=img_html
+		}
+		
+	});
+</script>
+{% endblock %}

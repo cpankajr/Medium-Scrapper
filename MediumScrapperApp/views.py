@@ -11,7 +11,7 @@ import logging
 import time
 import uuid
 import sys
-import threading
+import datetime
 
 from MediumScrapperApp.models import *
 from MediumScrapperApp.utils import *
@@ -42,16 +42,30 @@ class GetArticlesBasedonQueryAPI(APIView):
             data = request.data
             user_query = data['user_query']
             articles_data=[]
-            try:
-                search_obj = MediumSearchData.objects.get(user_query=user_query.lower())
-                articles_data = json.loads(search_obj.search_data)[:10]
-                no_of_results = search_obj.no_of_results
-            except ObjectDoesNotExist:
+            search_objs = MediumSearchData.objects.filter(user_query=user_query.lower())
+
+            if search_objs.count()>0:
+                if search_objs.filter(created_date__gte=datetime.datetime.now() - datetime.timedelta(minutes=30)).count()>0:
+                    search_obj = search_objs[0]
+                    articles_data = json.loads(search_obj.search_data)[:10]
+                    no_of_results = search_obj.no_of_results
+                else:
+                    search_obj = search_objs[0]
+                    articles_data, response_json_data, no_of_results = get_articles_list_based_on_query(user_query.lower())
+                    
+                    search_obj.search_data =json.dumps(articles_data)
+                    search_obj.no_of_results = int(no_of_results)
+                    search_obj.raw_json_data = json.dumps(response_json_data)
+                    search_obj.save()
+
+                    search_obj_pk = search_obj.pk
+                    save_article_details_in_db.delay(articles_data,search_obj_pk)    
+            else:
                 articles_data, response_json_data, no_of_results = get_articles_list_based_on_query(user_query.lower())
                 search_obj = MediumSearchData.objects.create(user_query=user_query.lower(),
                                                             search_data=json.dumps(articles_data),
                                                             no_of_results=int(no_of_results),
-                                                            raw_json_data=json.dumps(response_json_data),)
+                                                            raw_json_data=json.dumps(response_json_data))
                 search_obj_pk = search_obj.pk
                 save_article_details_in_db.delay(articles_data,search_obj_pk)
 

@@ -7,3 +7,8 @@
 [17-May-2020 18:53:09] INFO [MediumScrapperApp.utils:87] Error get_article_page_data url: https://medium.com/6a8bd9ed65dc/f8ec1c159583 ERROR: 'NoneType' object is not callable at line no: 65
 [17-May-2020 18:53:20] INFO [MediumScrapperApp.utils:87] Error get_article_page_data url: https://medium.com/6a8bd9ed65dc/f8ec1c159583 ERROR: 'NoneType' object is not callable at line no: 65
 [17-May-2020 18:53:59] INFO [MediumScrapperApp.utils:86] Error get_article_page_data url: https://medium.com/6a8bd9ed65dc/f8ec1c159583 ERROR: can only concatenate str (not "Tag") to str at line no: 64
+[17-May-2020 22:44:29] ERROR [MediumScrapperApp.views:82] GetArticlesBasedonQuery: '>' not supported between instances of 'QuerySet' and 'int' at 47
+[17-May-2020 22:45:01] ERROR [MediumScrapperApp.views:82] GetArticlesBasedonQuery: module 'datetime' has no attribute 'now' at 48
+[17-May-2020 22:45:30] ERROR [MediumScrapperApp.views:82] GetArticlesBasedonQuery: '>' not supported between instances of 'QuerySet' and 'int' at 48
+[17-May-2020 22:46:02] ERROR [MediumScrapperApp.views:82] GetArticlesBasedonQuery: int() argument must be a string, a bytes-like object or a number, not 'tuple' at 59
+[17-May-2020 22:49:02] ERROR [MediumScrapperApp.views:83] GetArticlesBasedonQuery: int() argument must be a string, a bytes-like object or a number, not 'tuple' at 59

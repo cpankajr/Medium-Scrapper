@@ -19,3 +19,8 @@
 .mediium-article svg{
 		    display: none!important;
 		}
+
+.favourited-article{
+	color: white;
+	background-color: #dc3545;
+}

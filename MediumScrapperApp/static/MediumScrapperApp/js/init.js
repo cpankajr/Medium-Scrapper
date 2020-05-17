@@ -88,8 +88,7 @@ function append_pagination_data(total_results,current_page,user_query) {
     no_of_pages = Math.ceil(total_results/10)
     html = '<nav aria-label="Page navigation example">\
       <ul class="pagination">'
-    for (var i = 1; i <(no_of_pages+1) ; i++) {
-        console.log(i)
+    for (var i = 1; i <(no_of_pages) ; i++) {
         if (i == current_page){
             html += '<li class="page-item disabled"><a class="page-link" href="javascript:void(0)">'+i+'</a></li>'
         }
@@ -119,11 +118,11 @@ function append_search_results(articles_data){
                     <a target="_blank" href="/article-page/?medium-url='+articles_data[i]["link"]+'"><h5 class="card-title">'+articles_data[i]["title"]+'</h5></a>\
                   </div>\
                   <div class="card-footer" style="border: none;background-color: initial;">\
-                    <button type="button" class="btn btn-light btn-outline-danger">\
+                    <button type="button" class="btn btn-light btn-outline-danger" onclick="toggle_favourites(this)">\
                             <i class="material-icons" style="vertical-align: sub;">\
                                 favorite\
                             </i>\
-                            <span class="badge badge-light">'+articles_data[i]["claps"]+'</span>\
+                            <span class="badge badge-light" >'+articles_data[i]["claps"]+'</span>\
                     </button>\
                     <span class="float-right">\
                     </span>\
@@ -132,6 +131,7 @@ function append_search_results(articles_data){
     }
     $(".search-results").html(html)
 }
+
 function get_articles_by_page(page_no,user_query){
     $("#search-loader").show()
     $(".search-results").hide()

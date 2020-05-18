@@ -27,7 +27,8 @@ class CsrfExemptSessionAuthentication(SessionAuthentication):
 
 
 def HomePage(request):
-    return render(request,"MediumScrapperApp/home.html")
+    return render(request, "MediumScrapperApp/home.html")
+
 
 class GetArticlesBasedonQueryAPI(APIView):
 
@@ -41,33 +42,39 @@ class GetArticlesBasedonQueryAPI(APIView):
         try:
             data = request.data
             user_query = data['user_query']
-            articles_data=[]
-            search_objs = MediumSearchData.objects.filter(user_query=user_query.lower())
+            articles_data = []
+            search_objs = MediumSearchData.objects.filter(
+                user_query=user_query.lower())
 
-            if search_objs.count()>0:
-                if search_objs.filter(created_date__gte=datetime.datetime.now() - datetime.timedelta(minutes=30)).count()>0:
+            if search_objs.count() > 0:
+                if search_objs.filter(created_date__gte=datetime.datetime.now() - datetime.timedelta(minutes=30)).count() > 0:
                     search_obj = search_objs[0]
                     articles_data = json.loads(search_obj.search_data)[:10]
                     no_of_results = search_obj.no_of_results
                 else:
                     search_obj = search_objs[0]
-                    articles_data, response_json_data, no_of_results = get_articles_list_based_on_query(user_query.lower())
-                    
-                    search_obj.search_data =json.dumps(articles_data)
+                    articles_data, response_json_data, no_of_results = get_articles_list_based_on_query(
+                        user_query.lower())
+
+                    search_obj.search_data = json.dumps(articles_data)
                     search_obj.no_of_results = int(no_of_results)
                     search_obj.raw_json_data = json.dumps(response_json_data)
                     search_obj.save()
 
                     search_obj_pk = search_obj.pk
-                    save_article_details_in_db.delay(articles_data,search_obj_pk)    
+                    save_article_details_in_db.delay(
+                        articles_data, search_obj_pk)
             else:
-                articles_data, response_json_data, no_of_results = get_articles_list_based_on_query(user_query.lower())
+                articles_data, response_json_data, no_of_results = get_articles_list_based_on_query(
+                    user_query.lower())
                 search_obj = MediumSearchData.objects.create(user_query=user_query.lower(),
-                                                            search_data=json.dumps(articles_data),
-                                                            no_of_results=int(no_of_results),
-                                                            raw_json_data=json.dumps(response_json_data))
+                                                             search_data=json.dumps(
+                                                                 articles_data),
+                                                             no_of_results=int(
+                                                                 no_of_results),
+                                                             raw_json_data=json.dumps(response_json_data))
                 search_obj_pk = search_obj.pk
-                save_article_details_in_db.delay(articles_data,search_obj_pk)
+                save_article_details_in_db.delay(articles_data, search_obj_pk)
 
             if len(articles_data) == 0:
                 tags = get_tag_suggestion(user_query)
@@ -86,28 +93,35 @@ class GetArticlesBasedonQueryAPI(APIView):
 
 GetArticlesBasedonQuery = GetArticlesBasedonQueryAPI.as_view()
 
+
 @shared_task
-def save_article_details_in_db(articles_data,search_obj_pk):
+def save_article_details_in_db(articles_data, search_obj_pk):
     search_obj = MediumSearchData.objects.get(pk=search_obj_pk)
     articles_objs = []
     for article in articles_data:
         try:
-            articles_objs.append(MediumArticle.objects.get(unique_id=article ['unique-id']))
+            articles_objs.append(MediumArticle.objects.get(
+                unique_id=article['unique-id']))
         except ObjectDoesNotExist:
             contents, tags, comments = get_article_page_data(article['link'])
-            articles_objs.append(MediumArticle.objects.create(unique_id=article ['unique-id'],
-                                                    creator=article["author"],
-                                                    title=article["title"],
-                                                    read_time = article['reading_time'],
-                                                    blog = contents,
-                                                    tags = json.dumps(tags),
-                                                    comments = json.dumps(comments)
-                                                    )
-                                                )
+            articles_objs.append(MediumArticle.objects.create(unique_id=article['unique-id'],
+                                                              creator=article[
+                                                                  "author"],
+                                                              title=article[
+                                                                  "title"],
+                                                              read_time=article[
+                                                                  'reading_time'],
+                                                              blog=contents,
+                                                              tags=json.dumps(
+                                                                  tags),
+                                                              comments=json.dumps(
+                                                                  comments)
+                                                              )
+                                 )
     for articles_obj in articles_objs:
         search_obj.articles.add(articles_obj)
         search_obj.save()
-            
+
 
 class GetNextArticlesAPI(APIView):
 
@@ -123,16 +137,19 @@ class GetNextArticlesAPI(APIView):
             user_query = data['user_query']
             start = int(data['start'])
             limit = int(data['limit'])
-            articles_data=[]    
-            search_obj = MediumSearchData.objects.get(user_query=user_query.lower())
+            articles_data = []
+            search_obj = MediumSearchData.objects.get(
+                user_query=user_query.lower())
             no_of_results = search_obj.no_of_results
-            if no_of_results>= start:
+            if no_of_results >= start:
                 response_json_data = json.loads(search_obj.raw_json_data)
-                articles_data = get_next_n_articles(start,limit,response_json_data)
-                search_obj.search_data = json.dumps(json.loads(search_obj.search_data)+articles_data)
+                articles_data = get_next_n_articles(
+                    start, limit, response_json_data)
+                search_obj.search_data = json.dumps(
+                    json.loads(search_obj.search_data) + articles_data)
                 search_obj.save()
                 search_obj_pk = search_obj.pk
-                save_article_details_in_db.delay(articles_data,search_obj_pk)
+                save_article_details_in_db.delay(articles_data, search_obj_pk)
                 response['status'] = 200
                 response['articles_data'] = articles_data
                 response['no_of_results'] = search_obj.no_of_results
@@ -147,20 +164,22 @@ class GetNextArticlesAPI(APIView):
 
 GetNextArticles = GetNextArticlesAPI.as_view()
 
+
 def GetArticlesPage(request):
     if request.method == "GET":
-        
+
         article_link = request.GET["medium-url"]
         article_unique_id = article_link.split("/")[-1]
-        
+
         try:
-            articles_obj = MediumArticle.objects.get(unique_id=article_unique_id)
+            articles_obj = MediumArticle.objects.get(
+                unique_id=article_unique_id)
             contents = articles_obj.blog
             comment_list = json.loads(comments)
         except ObjectDoesNotExist:
             contents, tags, comment_list = get_article_page_data(article_link)
 
-        return render(request,"MediumScrapperApp/article_page.html",{
-            "contents":contents,
-            "comment_list":comment_list
-            })
+        return render(request, "MediumScrapperApp/article_page.html", {
+            "contents": contents,
+            "comment_list": comment_list
+        })

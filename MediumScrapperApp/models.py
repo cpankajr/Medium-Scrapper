@@ -12,20 +12,21 @@ import logging
 
 from MediumScrapperApp.utils import *
 
+
 class MediumSearchData(models.Model):
 
     user_query = models.TextField(default="")
 
     tag_data = models.TextField(default="[]")
 
-    articles= models.ManyToManyField(
+    articles = models.ManyToManyField(
         'MediumArticle', blank=True)
 
     search_data = models.TextField(default="[]")
 
     no_of_results = models.IntegerField(default=0)
 
-    raw_json_data = models.TextField(default="{}")        
+    raw_json_data = models.TextField(default="{}")
 
     created_date = models.DateTimeField(auto_now_add=True)
 
@@ -40,17 +41,17 @@ class MediumSearchData(models.Model):
 class MediumArticle(models.Model):
 
     unique_id = models.TextField(default="")
-    
+
     creator = models.CharField(default="", max_length=500)
-    
+
     title = models.TextField(default="")
-    
+
     date = models.DateField(default=now)
-    
+
     read_time = models.IntegerField(default=0)
-        
+
     blog = models.TextField(default="")
-    
+
     tags = models.TextField(default="[]")
 
     comments = models.TextField(default="[]")
@@ -60,5 +61,4 @@ class MediumArticle(models.Model):
         verbose_name_plural = "MediumArticles"
 
     def __str__(self):
-        return self.title +" - " + self.unique_id
-        
+        return self.title + " - " + self.unique_id

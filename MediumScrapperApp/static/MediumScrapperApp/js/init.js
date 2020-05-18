@@ -70,7 +70,7 @@ function append_suggested_tags(suggested_tags){
         html+="Suggested Tags: <br>"
     }
     else{
-        html+="No suggested ags<br>"   
+        html+="No suggested tags :(<br>"   
     }
     for (var i = 0; i < suggested_tags.length; i++) {
         html += '<div class="chip tag-chip">'+suggested_tags[i]+'</div>'

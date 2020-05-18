@@ -13,8 +13,6 @@ django-rest-framework==0.1.0
 djangorestframework==3.11.0
 idna==2.9
 importlib-metadata==1.6.0
-ipython==7.14.0
-ipython-genutils==0.2.0
 jedi==0.17.0
 kombu==4.6.8
 parso==0.7.0
